@@ -1,0 +1,11 @@
+registry: quay.io
+build-container-image: gpu-init-build
+
+volumes:
+    - $HOME/.cache/go-build:/go/pkg/mod
+    - $HOME/.cache/golangci-lint:$HOME/.cache/golangci-lint
+env:
+   INIT: $INIT
+   FOCOS: $FOCUS
+   CI: $CI
+   GOCACHE: "/go/pkg/mod"
