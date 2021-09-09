@@ -1,3 +1,11 @@
+.idea/
+.vscode/
+.venv/
+venv/
+build/
+kubevirtci/
+**/RCS/**
+.*.swp
 # Binaries for programs and plugins
 *.exe
 *.exe~
@@ -12,4 +20,4 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/

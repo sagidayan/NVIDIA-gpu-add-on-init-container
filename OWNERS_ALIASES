@@ -1,0 +1,31 @@
+# See the OWNERS docs at https://go.k8s.io/owners
+
+aliases:
+  code-approvers:
+    - avishayt
+    - empovit
+    - eranco74
+    - filanov
+    - gamli75
+    - ori-amizur
+    - oshercc
+    - romfreiman
+    - tsorya
+    - yevgeny-shnaidman
+    - yuvigold
+    - nmagnezi
+    - carbonin
+    - rollandf
+    - danielerez
+    - ybettan
+    - slaviered
+    - osherdp
+    - flaper87
+    - mkowalski
+  code-reviewers:
+    - jakub-dzon
+    - pkliczewski
+    - masayag
+    - jordigilh
+    - machacekondra
+    - sagidayan
