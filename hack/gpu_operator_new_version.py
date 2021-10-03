@@ -8,6 +8,7 @@ import pathlib
 from argparse import ArgumentParser
 
 ANNOTATION_PATH = "metadata/annotations.yaml"
+ADDON_PATH = "addons/gpu-operator/main"
 MANIFESTS = "manifests"
 ADDON_NAME = "gpu-operator-certified-addon"
 DEPENDENCIES = "metadata/dependencies.yaml"
@@ -84,7 +85,7 @@ def download_new_bundle(version, addon_path):
 
 
 def create_new_bundle(args):
-    addon_path = os.path.join(args.manage_tenants_bundle_path, "addons/gpu-operator")
+    addon_path = os.path.join(args.manage_tenants_bundle_path, ADDON_PATH)
     download_new_bundle(args.version, addon_path)
     bundle_path = os.path.join(addon_path, args.version)
     update_rolebinding_namespaces(bundle_path, args.namespace)
