@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gpu-init-container/src/config"
 	"github.com/gpu-init-container/src/ops"
 	"github.com/sirupsen/logrus"
 
@@ -13,14 +14,10 @@ import (
 	runtimeconfig "sigs.k8s.io/controller-runtime/pkg/client/config"
 )
 
-const (
-	namespace = "redhat-gpu-operator"
-	nfdPrefix = "nfd"
-	clusterPolicyPrefix = "gpu-operator-certified-addon"
-)
-
-
 func main() {
+
+	config.ProcessArgs()
+
 	logger := logrus.New()
 	logger.Infof("Start running init container")
 
@@ -73,7 +70,7 @@ func initClients() (*olmv1client.OperatorsV1alpha1Client, runtimeclient.Client, 
 
 func createNfdCr(olmClient *olmv1client.OperatorsV1alpha1Client, runtimeClient runtimeclient.Client, logger logrus.FieldLogger) error {
 	logger.Info("Creating nfd cr")
-	nfdExample, err := ops.GetAlmExamples(olmClient, logger, namespace, nfdPrefix)
+	nfdExample, err := ops.GetAlmExamples(olmClient, logger, config.GlobalConfig.Namespace, config.GlobalConfig.NfdPrefix)
 	if err != nil {
 		logger.WithError(err).Error("Failed to get nfd alm example")
 		return err
@@ -85,7 +82,7 @@ func createNfdCr(olmClient *olmv1client.OperatorsV1alpha1Client, runtimeClient r
 		return err
 	}
 
-	nfdCr.SetNamespace(namespace)
+	nfdCr.SetNamespace(config.GlobalConfig.Namespace)
 	err = ops.CreateRuntimeObject(runtimeClient, nfdCr, logger)
 	if err != nil {
 		logger.WithError(err).Error("Failed to push nfd")
@@ -99,7 +96,7 @@ func createNfdCr(olmClient *olmv1client.OperatorsV1alpha1Client, runtimeClient r
 
 func createClusterPolicyCr(olmClient *olmv1client.OperatorsV1alpha1Client, runtimeClient runtimeclient.Client, logger logrus.FieldLogger) error {
 	logger.Info("Creating clusterPolicy cr")
-	clusterPolicyExample, err := ops.GetAlmExamples(olmClient, logger, namespace, clusterPolicyPrefix)
+	clusterPolicyExample, err := ops.GetAlmExamples(olmClient, logger, config.GlobalConfig.Namespace, config.GlobalConfig.GpuPrefix)
 	if err != nil {
 		logger.WithError(err).Error("Failed to get clusterPolicy alm example")
 		return err
@@ -110,7 +107,7 @@ func createClusterPolicyCr(olmClient *olmv1client.OperatorsV1alpha1Client, runti
 		logger.WithError(err).Error("Failed to get clusterPolicy cr from alm examples")
 		return err
 	}
-	clusterPolicy.SetNamespace(namespace)
+	clusterPolicy.SetNamespace(config.GlobalConfig.Namespace)
 	err = ops.CreateRuntimeObject(runtimeClient, clusterPolicy, logger)
 	if err != nil {
 		logger.WithError(err).Error("Failed to push clusterPolicy")
