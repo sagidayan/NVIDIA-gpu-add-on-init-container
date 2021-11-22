@@ -11,6 +11,7 @@ function print_help() {
 }
 
 function test_env() {
+    export GOPATH=${HOME}/go
 
     go get github.com/onsi/ginkgo/ginkgo@v1.16.4 \
         golang.org/x/tools/cmd/goimports@v0.1.5 \
