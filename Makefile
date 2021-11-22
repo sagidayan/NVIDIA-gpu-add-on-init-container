@@ -29,7 +29,7 @@ lint:
 	golangci-lint run -v
 
 format:
-	@goimports -w -l src/ || /bin/true
+	golangci-lint run --fix -v	
 
 format-check:
 	@test -z $(shell $(MAKE) format)

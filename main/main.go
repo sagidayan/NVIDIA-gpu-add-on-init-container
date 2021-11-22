@@ -1,13 +1,12 @@
 package main
 
 import (
-	"github.com/rh-ecosystem-edge/NVIDIA-gpu-add-on-init-container/src/config"
-	"github.com/rh-ecosystem-edge/NVIDIA-gpu-add-on-init-container/src/ops"
-	"github.com/sirupsen/logrus"
-
 	gpuv1 "github.com/NVIDIA/gpu-operator/api/v1"
 	nfdv1 "github.com/openshift/cluster-nfd-operator/api/v1"
 	olmv1client "github.com/operator-framework/operator-lifecycle-manager/pkg/api/client/clientset/versioned/typed/operators/v1alpha1"
+	"github.com/rh-ecosystem-edge/NVIDIA-gpu-add-on-init-container/src/config"
+	"github.com/rh-ecosystem-edge/NVIDIA-gpu-add-on-init-container/src/ops"
+	"github.com/sirupsen/logrus"
 	"k8s.io/apimachinery/pkg/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 	runtimeclient "sigs.k8s.io/controller-runtime/pkg/client"
