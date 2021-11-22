@@ -38,8 +38,11 @@ generate:
 	go generate $(shell go list ./...)
 	$(MAKE) format
 
+init_test_env:
+	${ROOT_DIR}/hack/setup_env.sh test_env
+
 unit-test:
-	$(MAKE) _test TEST_SCENARIO=unit TIMEOUT=30m TEST="$(or $(TEST),$(shell go list ./...))" || (docker kill postgres && /bin/false)
+	$(MAKE) _test TEST_SCENARIO=unit TIMEOUT=30m TEST="$(or $(TEST),$(shell go list ./...))"
 
 _test: $(REPORTS)
 	gotestsum $(GOTEST_FLAGS) $(TEST) $(GINKGO_FLAGS) -timeout $(TIMEOUT) || ($(MAKE) _post_test && /bin/false)
