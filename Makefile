@@ -22,7 +22,7 @@ build:
 build-images:
 	$(CONTAINER_COMMAND) build $(CONTAINER_BUILD_PARAMS) -f Dockerfile.gpu_init . -t $(INIT)
 
-ci-lint:
+pr-lint:
 	${ROOT_DIR}/hack/check-commits.sh
 
 lint:

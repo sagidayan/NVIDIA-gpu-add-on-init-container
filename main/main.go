@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/gpu-init-container/src/config"
-	"github.com/gpu-init-container/src/ops"
+	"github.com/rh-ecosystem-edge/NVIDIA-gpu-add-on-init-container/src/config"
+	"github.com/rh-ecosystem-edge/NVIDIA-gpu-add-on-init-container/src/ops"
 	"github.com/sirupsen/logrus"
 
 	gpuv1 "github.com/NVIDIA/gpu-operator/api/v1"
@@ -92,7 +92,6 @@ func createNfdCr(olmClient *olmv1client.OperatorsV1alpha1Client, runtimeClient r
 	logger.Info("Done creating nfd cr")
 	return nil
 }
-
 
 func createClusterPolicyCr(olmClient *olmv1client.OperatorsV1alpha1Client, runtimeClient runtimeclient.Client, logger logrus.FieldLogger) error {
 	logger.Info("Creating clusterPolicy cr")

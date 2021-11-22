@@ -1,4 +1,4 @@
-module github.com/gpu-init-container
+module github.com/rh-ecosystem-edge/NVIDIA-gpu-add-on-init-container
 
 go 1.16
 
