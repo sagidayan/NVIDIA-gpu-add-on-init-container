@@ -9,7 +9,7 @@ import (
 
 var _ = Describe("Dummy Test", func() {
 	It("Should pass", func() {
-		Expect(1).To(Equal(1))
+		Expect(1).To(Equal(0))
 	})
 })
 
