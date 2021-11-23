@@ -11,7 +11,6 @@ function print_help() {
 }
 
 function test_env() {
-    export GOPATH=${HOME}/go
 
     go get github.com/onsi/ginkgo/ginkgo@v1.16.4 \
         golang.org/x/tools/cmd/goimports@v0.1.5 \
@@ -22,7 +21,6 @@ function test_env() {
         sigs.k8s.io/controller-tools/cmd/controller-gen@v0.6.2 \
         github.com/AlekSi/gocov-xml@v0.0.0-20190121064608-3a14fb1c4737
 
-    go mod vendor
 }
 
 declare -F $@ || (print_help && exit 1)
