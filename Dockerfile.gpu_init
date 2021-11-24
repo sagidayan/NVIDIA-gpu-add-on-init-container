@@ -11,7 +11,7 @@ RUN go mod download
 COPY . .
 RUN make build
 
-FROM quay.io/centos/centos:centos8
+FROM registry.access.redhat.com/ubi8/ubi
 
 COPY --from=builder /go/src/github.com/openshift/gpu-init-container/build/init_container /usr/bin/init_run
 
