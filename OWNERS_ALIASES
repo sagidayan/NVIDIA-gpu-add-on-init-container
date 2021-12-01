@@ -12,7 +12,6 @@ aliases:
     - romfreiman
     - tsorya
     - yevgeny-shnaidman
-    - yuvigold
     - nmagnezi
     - carbonin
     - rollandf
@@ -22,6 +21,7 @@ aliases:
     - osherdp
     - flaper87
     - mkowalski
+    - lranjbar
   code-reviewers:
     - jakub-dzon
     - pkliczewski
