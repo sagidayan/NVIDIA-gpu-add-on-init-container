@@ -20,7 +20,7 @@ ROLES_TO_ADD = [{"apiGroups": ["operators.coreos.com"], "resources": ["clusterse
                 {"apiGroups": ["nfd.openshift.io"], "resources": ["nodefeaturediscoveries"],
                  "verbs": ["get", "list", "create", "patch", "update"]}]
 INIT_CONTAINER = [{"name": "gpu-init-container",
-                   "image": "quay.io/itsoiref/gpu_init_container:latest",
+                   "image": "quay.io/edge-infrastructure/nvidia-gpu-add-on-init-container:latest",
                    "command": ["/usr/bin/init_run"], }]
 
 
