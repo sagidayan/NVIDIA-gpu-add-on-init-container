@@ -24,6 +24,7 @@ function fetchDir() {
   DIR=$1
   cd $WORKING_DIR
   echo "Fetching dir $DIR to $WORKING_DIR"
+  mkdir -p $WORKING_DIR/$DIR
   FILES=$(curl -s --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" "${GITLAB_API_URL}/projects/${PROJECT_ENC}/repository/tree?ref=master&per_page=100&recursive=true&path=${DIR}" | jq -r '.[] | select(.type == "blob") | .path')
   for FILE in $FILES; do
     fetchFile $FILE

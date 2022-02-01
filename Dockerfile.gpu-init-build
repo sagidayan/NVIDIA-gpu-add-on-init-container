@@ -5,7 +5,7 @@ ENV GOFLAGS=""
 RUN curl --retry 5 -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh \
         | sh -s -- -b $(go env GOPATH)/bin v1.36.0
 
-RUN yum install -y docker && \
+RUN yum install -y yum install  python3-devel docker && \
     yum clean all
 
 RUN pip3 install PyGithub pyyaml

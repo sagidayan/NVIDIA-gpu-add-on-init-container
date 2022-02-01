@@ -76,20 +76,28 @@ def donwload_new_bundle_from_rh_certified(version, addon_path):
 def download_new_bundle(version, addon_path):
     print(f"Downloading new bundle {version} to {addon_path}")
     current_folder = pathlib.Path(__file__).parent.resolve()
+    move_to_folder = addon_path
+    if version.startswith("v"):
+        move_to_folder = os.path.join(addon_path, version[1:])
+
     subprocess.check_call(f"export WORKING_DIR={addon_path}; {current_folder}/gitlab_download.sh bundle/{version} "
-                          f"&& mv $WORKING_DIR/bundle/{version} $WORKING_DIR && rm -rf $WORKING_DIR/bundle", shell=True)
+                          f"&& mv $WORKING_DIR/bundle/{version} {move_to_folder} && rm -rf $WORKING_DIR/bundle", shell=True)
 
 
 def create_new_bundle(args):
+    version = args.version
     addon_path = os.path.join(args.manage_tenants_bundle_path, ADDON_PATH)
     if args.rh_certified:
-        donwload_new_bundle_from_rh_certified(args.version, addon_path)
+        donwload_new_bundle_from_rh_certified(version, addon_path)
     else:
-        download_new_bundle(args.version, addon_path)
-    bundle_path = os.path.join(addon_path, args.version)
+        download_new_bundle(version, addon_path)
+    if version.startswith("v"):
+        version = version[1:]
+
+    bundle_path = os.path.join(addon_path, version)
     handle_annotations(bundle_path, args.channel, args.namespace)
-    handle_csv(bundle_path, args.version, args.prev_version)
-    copy_deps(addon_path, args.version, args.prev_version)
+    handle_csv(bundle_path, version, args.prev_version)
+    copy_deps(addon_path, version, args.prev_version)
 
 
 if __name__ == '__main__':
