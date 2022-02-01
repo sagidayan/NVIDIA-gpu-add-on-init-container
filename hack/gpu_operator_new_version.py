@@ -36,6 +36,8 @@ def handle_csv(bundle_path, version, prev_version):
     csv_file = get_csv_file(bundle_path)
     with open(csv_file, "r") as _f:
         csv = yaml.safe_load(_f)
+
+    csv["metadata"]["annotations"]["olm.skipRange"] = f">=0.0.1 <{version}"
     csv["metadata"]["name"] = f"gpu-operator-certified-addon.v{version}"
     csv["spec"]["replaces"] = f"gpu-operator-certified-addon.v{prev_version}"
     csv["spec"]["install"]["spec"]["deployments"][0]["spec"]["template"]["spec"]["initContainers"] = INIT_CONTAINER
