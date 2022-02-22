@@ -72,7 +72,7 @@ def donwload_new_bundle_from_rh_certified(version, addon_path):
                           f"--repo=certified-operators --branch=main "
                           f"--folder='{gpu_folder}/v{version}' -w {addon_path}"
                           f" && mv {addon_path}/{gpu_folder}/v{version} {addon_path}/{version} "
-                          f" && rm -rf {addon_path}/{operators_folder}", shell=True)
+                          f" && rm -rf {addon_path}/{operators_folder}", shell=True, env={})
 
 
 def download_new_bundle(version, addon_path):
@@ -83,7 +83,7 @@ def download_new_bundle(version, addon_path):
         move_to_folder = os.path.join(addon_path, version[1:])
 
     subprocess.check_call(f"export WORKING_DIR={addon_path}; {current_folder}/gitlab_download.sh bundle/{version} "
-                          f"&& mv $WORKING_DIR/bundle/{version} {move_to_folder} && rm -rf $WORKING_DIR/bundle", shell=True)
+                          f"&& mv $WORKING_DIR/bundle/{version} {move_to_folder} && rm -rf $WORKING_DIR/bundle", shell=True, env={})
 
 
 def create_new_bundle(args):
