@@ -1,5 +1,11 @@
 #!/bin/sh
 
+####
+# SPDX-License-Identifier: CC BY-SA 4.0
+# This script was based on https://stackoverflow.com/revisions/60568288/2
+#
+# Script adopted to fit our needs. Mostly regarding default values and file/folder paths
+
 GITLAB_API_URL=https://gitlab.com/api/v4
 export GITLAB_TOKEN=${GITLAB_TOKEN:-}
 PROJECT=${PROJECT:-"nvidia/kubernetes/gpu-operator"}

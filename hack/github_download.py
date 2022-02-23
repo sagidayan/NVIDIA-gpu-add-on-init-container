@@ -48,7 +48,7 @@ def download_directory(repo, sha, server_path, working_dir):
                 path = content.path
                 file_content = repo.get_contents(path, ref=sha)
                 file_data = base64.b64decode(file_content.content)
-                with open(os.path.join(working_dir, content.path), "w+") as file_out:
+                with open(os.path.join(working_dir, content.path), "w+", encoding="utf-8") as file_out:
                     file_out.write(file_data.decode('ascii'))
             except (GithubException, IOError) as exc:
                 print('Error processing', content.path, exc)
